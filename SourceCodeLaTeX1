@@ -1,0 +1,407 @@
+ \documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[polish]{babel}
+\usepackage{polski}
+
+\usepackage[cm]{fullpage}
+\usepackage{amsfonts}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{subfig}
+\usepackage{wrapfig}
+\usepackage{ragged2e}
+\usepackage{xcolor}
+\graphicspath{ {images/} }
+\usepackage{tikz}
+\usepackage{blindtext}
+\usepackage{xcolor}
+\usepackage{multicol}
+\setlength{\columnsep}{1cm}
+\usepackage{multirow}
+\usepackage[intlimits]{amsmath}
+\usepackage{siunitx}
+\usepackage{dcolumn}
+\usepackage{titling}
+\usepackage[cm]{fullpage}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage[all]{hypcap}
+% \usepackage[section]{placeins}
+\usepackage{placeins}
+\usepackage{multirow}
+\usepackage{enumerate}
+
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\rhead{Mikołaj Kalejta}
+\lhead{Wyznaczanie prędkości dźwięku w powietrzu}
+\setlength{\headheight}{23pt}
+\setlength{\headsep}{8pt}
+
+\begin{document}
+\title{Wyznaczanie prędkości dźwięku w powietrzu}
+\author{{Mikołaj Kalejta}
+\date{03/02/2023}
+\maketitle
+\section{\small STRESZCZENIE}
+
+Celem doświadczenia było wyznaczenie prędkości propagacji fali dźwiękowej w powietrzu. Wykorzystano do tego trzy różne metody, dla których otrzymano kolejno $v_{1} = (345,1 \pm 1,2)$ m/s, $v_{2} = (348,7 \pm 1,5)$ m/s oraz $v_{3} = (346,2 \pm 1,1)$ m/s. Ponieważ przeprowadzony test $3\sigma$ nie wykazał rozbieżności między wyznaczonymi parametrami, wyznaczono ostateczną ocenę prędkości propagacji fali dźwiękowej równą $\Bar{v} = (346,32 \pm 0,67)$ m/s. Wartość tą porównano z wartością modelową $v_{teo} = 343,51$ m/s przy pomocy testu $3\sigma$, który wykazał brak zgodności. Zaproponowano więc przyczyny rozbieżności. Na podstawie wyników przeprowadzonych testów $\chi^{2}$ Pearsona ostatecznie uznano, że wyniki doświadczenia wykazują zgodność z założonym modelem falowym.\\
+
+\hrule
+\begin{multicols}{2}
+\section{\small WPROWADZENIE}
+Celem ćwiczenia było wyznaczenie prędkości dźwięku w powietrzu. Dźwięk rozchodzi się w powietrzu w formie fali poprzecznej, co oznacza, że kierunek drgań jest jednakowy z kierunkiem rozchodzenia się fali. Zjawisko to w można w ogólności opisać równaniem falowym, który dla fali dźwiękowej rozchodzącej się w osi X sprowadza się do postaci:\\
+\begin{equation}
+    \frac{1}{v^{2}}\frac{\partial^{2}p}{\partial t^{2}} = \frac{\partial^{2}p}{\partial x^{2}}.
+\end{equation}
+Opisuje ono zmiany ciśnienia $p$ razem z rozchodzącą się falą w zależności od współrzędnej $x$ oraz czasu $t$, przy czym  parametr $v$ jest charakterystyczną prędkością rozchodzenia się fali. Ogólnym rozwiązaniem równania (1) jest funkcja ciśnienia dana:\\
+\[
+    p(x,t) = Ae^{i(kx-\omega t)},
+\]
+gdzie parametr $A$ oznacza amplitudę fali, $k$ liczbę falową, a $\omega$ częstość kołową fali. Równanie (1) dopuszcza rozwiązanie w postaci fali harmonicznej:\\
+\[
+    p(x,t) = A\cos{(kx-\omega t)},
+\]lub:\[
+    p(x,t) = A\sin{(kx-\omega t)},
+\]o ile spełniony jest tak zwany związek dyspersyjny:\\
+\[
+    \omega^{2} = v^{2}k^{2}.
+\]
+W związku z tym prędkość rozchodzenia się fali $v$ można przedstawić w postaci:
+\begin{equation}
+    v = \frac{\omega}{k} = \lambda\nu,
+\end{equation}
+która również łączy ten parametr z długością fali $\lambda$ oraz częstością $\nu$. Związek ten będzie wykorzystywany przy dwóch z użytych metod. \\
+
+Prędkość dźwięku będzie zależała od wielu parametrów ośrodka, w którym się propaguje. Traktując powietrze jako gaz doskonały można wyprowadzić zależność:\\
+\begin{equation}
+    v = \sqrt{\frac{\kappa R}{\mu}T},
+\end{equation}
+gdzie $R$ jest uniwersalną stałą gazową, $\kappa$ stosunkiem ciepła molowego przy stałym ciśnieniu do ciepła molowego przy stałej objętości $C_{p}/C_{V}$, $\mu$ średnią masą molową, a $T$ temperaturą bezwzględną. Model gazu doskonałego zakłada cząsteczki jako punkty materialne o masie, lecz bez objętości oraz brak oddziaływania między cząsteczkami poza odpychaniem przy zderzeniach, które traktowane są jako całkowicie sprężyste. Założenie powietrza jako gazu doskonałego jest więc jedynie przybliżeniem, które przy ciśnieniu atmosferycznym oraz temperaturze pokojowej jest uzasadnione. Warto jednak zauważyć, że przyjmowane są tutaj uśrednione parametry $\kappa$ oraz $\mu$, a ich rzeczywista wartość może zależeć między innymi od wilgotności powietrza, co tym samym wpływa na prędkość propagacji fali dźwiękowej w takich warunkach[1].\\
+
+W ostatniej części doświadczenia wykorzystano krzywe Lissajous, powstające dla współrzędnych zadanych przez \underline{dwa równania harmoniczne}:\\
+\[
+    x(t) = Asin(\omega_{1} t + \alpha),
+\]\[
+    y(t) = Bsin(\omega_{2} t + \beta).
+\]
+W zależności od parametrów krzywe te przyjmują różne postacie. W prowadzonym doświadczeniu dostarczano dwa sygnały o tej samej częstości kołowej $\omega$ do oscyloskopu, ustawionego na trybie XY, to znaczy dwóch współrzędnych przestrzennych. Dla $\omega_{1} = \omega_{2}$ parametrami wpływającymi na kształt krzywej są amplitudy sygnału $A$ oraz $B$, jak również różnica fazy $\alpha - \beta$. Amplitudy sygnału wpływają na względną skalę osi X i Y. Kształt krzywej zależy, więc w tym przypadku w największym stopniu od różnicy faz. Rysunek 1 przedstawia kształt krzywych dla różnicy faz zmieniającej się o czynnik $\pi/2$. \\
+
+
+Przy spełnionej zależności $\omega_{1} = \omega_{2}$, krzywe te w ogólności mają postać elipsy, która dla różnicy faz $\alpha - \beta = n\pi$ degeneruje się do linii. Warto zauważyć, że dla różnicy faz równej $n\pi + \pi/2$ i $n\pi + 3\pi/2$ krzywa przybiera tą samą postać, gdzie mała i wielka półoś są równoległe odpowiednio do osi Y oraz osi X. Mimośród tej elipsy jest zależny od stosunku amplitud $A$ i $B$, gdzie dla $A/B = 1$ widoczny jest okrąg.\\
+
+\section{\small OPIS DOŚWIADCZENIA}
+Układ wykorzystany w doświadczeniu składał się z generatora Agilent 33210a, oscyloskopu Tektronix TDS1002 oraz ławy z taśmą mierniczą, na której ustawiany był głośnik i mikrofon. Schemat układu znajduje się na Rysunku 2. \\
+
+
+Do kanału 1 na oscyloskopie podłączony był sygnał podawany przy pomocy generatora, który również zasilał głośnik, z kolei do kanału 2 podawany był sygnał generowany na mikrofonie. Dokładność pomiaru odległości na ławie wynosiła $\Delta_{x} = 1$ mm, a dokładność pomiaru różnicy czasu na oscyloskopie była równa $\Delta_{25\ \mu s} = 1\ \mu$s dla skali czasowej 25 $\mu$s oraz $\Delta_{50\ \mu s} = 2\ \mu$s dla skali czasowej 50 $\mu$s. Dokładność częstotliwości sygnału generatora wynosiła $\Delta_{\nu} = 1$ mHz. Niepewności obliczono w następujący sposób: \\
+\begin{equation}
+    u = \frac{\Delta}{\sqrt{3}}.
+\end{equation}
+Ponieważ prędkość dźwięku w powietrzu jest zależna od jego temperatury, toteż wykonano pomiar tej wielkości otrzymując wartość $t = (21 \pm 1)$ $^{\circ}$C.
+
+Pomiary składały się z trzech oddzielnych części, aby później móc wyznaczyć poszukiwaną prędkość trzema różnymi metodami. \\
+
+\subsection{\small CZĘŚĆ PIERWSZA}
+
+W pierwszej części na oscyloskopie ustawiono tryb z podstawą czasu, na ławie przymocowano głośnik w pozycji $x_{g} = (1,100 \pm 0,00058)$ m, a mikrofon przesunięto do pozycji $x_{m} = (1,010 \pm 0,00058)$ m. Dalej uruchomiono generator w trybie ciągłego sygnału sinusoidalnego o częstotliwości $\nu = 40$ kHz, w celu upewnienia się czy wszystko działa poprawnie oraz dostosowania skali na oscyloskopie. Następnie generator przestawiono na tryb pojedynczego sygnału oraz wykonano pomiary różnicy czasu między dotarciem sygnału na oscyloskop z generatora, a wybranym maksimum sygnału, tym samym dla każdego z pomiarów, docierającego z mikrofonu. Różnicę czasów mierzono przy użyciu kursorów, a skalę czasową na oscyloskopie dobierano tak, by zapewnić możliwie największą dokładność wykonywanego pomiaru. Wyniki zebrane w ten sposób dla 11 różnych położeń mikrofonu zawarto w Tabeli 1. \\
+
+\centering{\small\textbf{Tabela 1: Wyniki pierwszej części pomiarów.}}\\
+\textcolor{white}{o}\\
+\begin{tabular}{|c|c|c|c|}
+    \hline
+    $x_{m}$ [m] & $u_{x}$ [m] & $t$ [$\mu$s] & $u_{t}$ [$\mu$s]\\
+    \hline
+    1,04000 & 0,00058 & 147,00 & 0,58 \\
+    1,03500 & 0,00058 & 163,00 & 0,58 \\
+    1,03000 & 0,00058 & 178,00 & 0,58 \\
+    1,02000 & 0,00058 & 206,0 & 1,2 \\
+    1,01000 & 0,00058 & 234,0 & 1,2 \\
+    1,00000 & 0,00058 & 262,0 & 1,2 \\
+    0,99000 & 0,00058 & 292,0 & 1,2 \\
+    0,98000 & 0,00058 & 322,0 & 1,2 \\
+    0,97000 & 0,00058 & 352,0 & 1,2 \\
+    0,96000 & 0,00058 & 380,0 & 1,2 \\
+    0,95000 & 0,00058 & 408,0 & 1,2 \\
+    \hline
+\end{tabular}
+\textcolor{white}{o}\\
+\justifying
+
+\subsection{\small CZĘŚĆ DRUGA}
+
+W drugiej części na oscyloskopie znów ustawiono tryb z podstawą czasu, mikrofon umocowano na ławie w pozycji $x_{m} = (0,950 \pm 0,00058)$ m, a na generatorze ustawiono tryb ciągłego sygnału sinusoidalnego o częstotliwości $\nu = 40$ kHz. Dla tak ustawionego układu przesuwano głośnik, aż oba sygnały docierające do oscyloskopu były w fazie, otrzymując $x_{g} = (1,001 \pm 0,00058)$ m, jako położenie początkowe głośnika. Następnie głośnik przesuwano na ławie tak, by sygnał docierający z mikrofonu do oscyloskopu przesunął się o określoną wielokrotność $n$ okresu względem sygnału z generatora, po czym odnotowywano położenie urządzenia na ławie. W ten sposób zebrano 14 punktów pomiarowych, a wyniki zamieszczono w Tabeli 2. \\
+
+\centering{\small\textbf{Tabela 2: Wyniki drugiej części pomiarów.}}\\
+\textcolor{white}{o}\\
+\begin{tabular}{|c|c|c|}
+    \hline
+    $x_{}$ [m] & $u_{x}$ [m] & $n$ \\
+    \hline
+    1,00100 & 0,00058 & 0 \\
+    1,01100 & 0,00058 & 1 \\
+    1,02000 & 0,00058 & 2 \\
+    1,02900 & 0,00058 & 3 \\
+    1,03700 & 0,00058 & 4 \\
+    1,04600 & 0,00058 & 5 \\
+    1,05400 & 0,00058 & 6 \\
+    1,06300 & 0,00058 & 7 \\
+    1,07200 & 0,00058 & 8 \\
+    1,08100 & 0,00058 & 9 \\
+    1,08900 & 0,00058 & 10 \\
+    1,09800 & 0,00058 & 11 \\
+    1,10700 & 0,00058 & 12 \\
+    1,11500 & 0,00058 & 13 \\
+    \hline
+\end{tabular}
+\textcolor{white}{o}\\
+\justifying
+
+\subsection{\small CZĘŚĆ TRZECIA}
+
+W ostatniej części pomiarów oscyloskop ustawiono w tryb XY, gdzie sygnał na osi X podawany był przez generator, a na osi Y przez mikrofon. Generator znów ustawiono na ciągły sygnał sinusoidalny o częstotliwości $\nu = 40$ kHz, a mikrofon umocowano w pozycji $x_{m} = (0,950 \pm 0,00058)$ m. Następnie głośnik ustawiono tak, by na oscyloskopie widoczna była pierwsza z figur Lissajous, linia koloru niebieskiego widoczna na Rysunku 1. Dla tak ustawionego układu odnotowano położenie $x_{g} = (1,046 \pm 0,00058)$ m. Dalej głośnik odsuwano na ławie, aż do zobaczenia kolejnej figury na ekranie oscyloskopu, tym razem elipsy widocznej na Rysunku 1 w kolorze czerwonym. Kolejnymi figurami była ukośna linia w przeciwnym kierunku niż początkowa, jednakowa elipsa do poprzedniej, po czym ponownie obserwowano ukośną linie widoczną na niebiesko na Rysunku 1. Dla każdej figury odnotowywano położenie głośnika na ławie, a wyniki dla 11 sekwencji takich figur odnotowano w Tabeli 3. Wiedząc, że kolejne figury pojawiają się dla różnicy faz zmieniającej się o $\Delta = \pi/2$, a okres wynosi $2\pi$, jako drugą zmienną przyjęto wielokrotność $k$ zdefiniowaną jako: \\
+\begin{equation}
+    \Delta \phi = 2k\pi,
+\end{equation}
+gdzie $\Delta \phi$ jest różnicą faz od pierwszej zarejestrowanej figury. Oznacza to, że dla całkowitych $k$ obserwowana jest ukośna linia skierowana do góry w prawo, dla połówkowych linia skierowana do góry w lewo, a dla ćwiartkowych elipsa. \\
+
+\textcolor{white}{o}\\
+\textcolor{white}{o}\\
+\textcolor{white}{o}\\
+\centering{\small\textbf{Tabela 3: Wyniki trzeciej części pomiarów.}}\\
+\textcolor{white}{o}\\
+\begin{tabular}{|c|c|c|c|c|c|}
+    \hline
+    $x_{g}$ [m] & $u_{x}$ [m] & $k$ & $x_{g}$ [m] & $u_{x}$ [m] & $k$\\
+    \hline
+    1,046 & 0,00058 & 0,00 & 1,094 & 0,00058 & 5,50 \\
+    1,048 & 0,00058 & 0,25 & 1,096 & 0,00058 & 5,75 \\
+    1,050 & 0,00058 & 0,50 & 1,098 & 0,00058 & 6,00 \\
+    1,052 & 0,00058 & 0,75 & 1,100 & 0,00058 & 6,25 \\
+    1,055 & 0,00058 & 1,00 & 1,102 & 0,00058 & 6,50 \\
+    1,057 & 0,00058 & 1,25 & 1,104 & 0,00058 & 6,75 \\
+    1,059 & 0,00058 & 1,50 & 1,107 & 0,00058 & 7,00 \\
+    1,061 & 0,00058 & 1,75 & 1,109 & 0,00058 & 7,25 \\
+    1,063 & 0,00058 & 2,00 & 1,111 & 0,00058 & 7,50 \\
+    1,066 & 0,00058 & 2,25 & 1,113 & 0,00058 & 7,75 \\
+    1,068 & 0,00058 & 2,50 & 1,115 & 0,00058 & 8,00 \\
+    1,070 & 0,00058 & 2,75 & 1,118 & 0,00058 & 8,25 \\
+    1,072 & 0,00058 & 3,00 & 1,120 & 0,00058 & 8,50 \\
+    1,074 & 0,00058 & 3,25 & 1,122 & 0,00058 & 8,75 \\
+    1,076 & 0,00058 & 3,50 & 1,124 & 0,00058 & 9,00 \\
+    1,079 & 0,00058 & 3,75 & 1,126 & 0,00058 & 9,25 \\
+    1,081 & 0,00058 & 4,00 & 1,128 & 0,00058 & 9,50 \\
+    1,083 & 0,00058 & 4,25 & 1,130 & 0,00058 & 9,75 \\
+    1,085 & 0,00058 & 4,50 & 1,132 & 0,00058 & 10,00 \\
+    1,087 & 0,00058 & 4,75 & 1,135 & 0,00058 & 10,25 \\
+    1,089 & 0,00058 & 5,00 & 1,137 & 0,00058 & 10,50 \\
+    1,092 & 0,00058 & 5,25 & 1,139 & 0,00058 & 10,75 \\
+    \hline
+\end{tabular}
+\textcolor{white}{o}\\
+\justifying
+
+\section{\small OPIS I DYSKUSJA WYNIKÓW }
+
+Do wyznaczenia prędkości wykorzystane zostały trzy osobne metody, dla których wykonano odpowiednie pomiary opisane w Rozdziale 3, w związku z tym analiza dla każdej z metod została przeprowadzona osobno. Na koniec porównano wartości prędkości dźwięku obliczonych przy użyciu różnych sposobów, zarówno między sobą, jak i do wartości modelowej.
+
+\subsection{\small METODA 1}
+
+Analizę dla tej metody rozpoczęto od stworzenia wykresu zależności położenia mikrofonu $x_{m}$ od czasu $t$, w którym dźwięk przebył drogę między głośnikiem, a mikrofonem. Warto zauważyć, że na różnicę czasu dotarcia obu sygnałów do oscyloskopu wpływ ma również różnica w długości kabli, jednak, ponieważ prędkość rozchodzenia się sygnału elektrycznego w kablu jest znacznie większa od oczekiwanej prędkości dźwięku, postanowiono nie uwzględniać tego efektu. Do wykresu metodą najmniejszych kwadratów dopasowano zależność liniową $y = a_{1}x + b_{1}$, gdzie jako zmienną niezależną przyjęto czas $t$, a jako zależną położenie $x_{m}$.\\
+
+
+Porównując dopasowywaną funkcję do równania na drogę w ruchu jednostajnym:\\
+\begin{equation}
+    x(t) = x_{1} + v_{1}t,
+\end{equation}
+można zauważyć, że współczynnik kierunkowy prostej jest równy prędkości dźwięku, a wyraz wolny opisuje położenie początkowe mikrofonu. Analizując wykres widoczny na Rysunku 1 widać, że współczynnik kierunkowy prostej jest ujemny, co jest spowodowane dobranym układem współrzędnych, ponieważ sygnał z głośnika wysyłany jest w ujemnym kierunku osi X. Na podstawie stworzonego dopasowania otrzymano prędkość dźwięku co do wartości równą: \\
+\[
+    v_{1} = (345,1 \pm 2,0) \textrm{ m/s},
+\] oraz położenie początkowe głośnika równe:\\
+\[
+    x_{1} = (1,09099 \pm 0,00057) \textrm{ m},
+\]a także kowariancję i korelację równe odpowiednio:\[
+    c_{v_{1},\ x_{0}} = -0,0011 \textrm{ m}^{2}\textrm{/s},
+\]\[
+    r_{v_{1},\ x_{0}} = -0,95.
+\]
+Aby zweryfikować założenie o doborze zmiennych zależnej i niezależnej, obliczono niepewności położenia wynikające z dopasowania, wykorzystując propagacje niepewności jako:\\
+\begin{equation}
+    u_{x}^{2}(u_{t}) = u_{t}v,
+\end{equation}
+a wyniki zawarto w Tabeli 4 w Rozdziale 6. Analizując zawarte w niej dane widać, że zmienne zostały odpowiednio dobrane, ponieważ niepewności wynikające z dopasowania są mniejsze dla każdego z punktów pomiarowych. \\
+
+Dalej w celu weryfikacji poprawności wyników pomiarowych, wykonano test $\chi^{2}$ Pearsona, dla którego przyjęto poziom zgodności równy $\alpha = 0,05$. Dla jedenastu punktów pomiarowych wyznaczono metodą najmniejszych kwadratów dwa parametry, co dało $d = 11 - 2 = 9$ stopni swobody, dla których wartość krytyczna jest równa $\chi^{2}_{kr} = 16,92$, a wyliczone z dopasowania parametry wyniosły:\\
+\[
+    \chi^{2} = 3,24,
+\]\[
+    \chi^{2}_{red} = 0,36,
+\]\[
+    p = 0,95.
+\]
+Wyniki te wskazują na bardzo dobrą zgodność pomiarów z modelem, lecz mogą również wskazywać na brak względnej niezależności pomiarów lub przeszacowaniu niepewności. Z tego powodu stworzono wykres reszt danych równaniem:\\
+\begin{equation}
+    e_{i} = x_{i} - (x_{1} - vt_{i}).
+\end{equation}
+
+Na znajdującym się na Rysunku 4 wykresie reszt widać pewną zależność, a rozkładu nie można uznać za chaotyczny. Oznacza to, że na pomiary wpływ miały pewne nielosowe czynniki zewnętrzne. Niestety na podstawie posiadanych danych, eksperymentator nie był w stanie zidentyfikować tych czynników.\\
+
+Po analizie wykresu reszt i teście $\chi^{2}$ Pearsona postanowiono przeskalować niepewności tak, by wartość $\chi^{2}_{red} = 1$. W ten sposób otrzymano nowe niepewności opisane jako: \\
+\[
+    \sigma = cu,
+\]\[
+    c = \sqrt{\frac{\chi^{2}}{d}} = \sqrt{\chi^{2}_{red}}.
+\]Otrzymano w ten sposób czynnik skalujący równy $c_{1} = 0,6$, na podstawie którego ponownie obliczono parametry dopasowania równe: \\
+\[
+    v_{1} = (345,1 \pm 1,2) \textrm{ m/s},
+\]\[
+    x_{1} = (1,09099 \pm 0,00034) \textrm{ m},
+\]
+
+Porównano również otrzymany parametr $x_{1} = (1,09099 \pm 0,00034)$ m ze zmierzonym położeniem początkowym głośnika $x_{g} = (1,100 \pm 0,00058)$ wykorzystując test $3\sigma$. Test ten nie wykazał zgodności między tymi parametrami, lecz było to najprawdopodobniej spowodowane pozycją głośnika na statywie. Pomiary położenia wykonywano na podstawie krawędzi mocowania statywu do ławy, a sam głośnik nie znajdował się dokładnie nad nią, lecz był trochę przesunięty względem niej. \\
+
+\subsection{\small METODA 2}
+
+W przypadku drugiej metody przesuwano głośnik tak, by sygnał z mikrofonu odbierany na oscyloskopie przesuwał się względem sygnału z generatora o wielokrotność $n$ okresu względem pierwszego pomiaru, dla którego sygnały te były w fazie. Oznacza to, że położenie $x$ jest związane z długością fali $\lambda$ równaniem:\\
+\begin{equation}
+    x(n) = x_{2} + n\lambda.
+\end{equation}
+W związku z tym postanowiono stworzyć wykres zależności położenia $x$ od wielokrotności $n$, widoczny na Rysunku 5. \\
+
+Do wykresu dopasowano zależność liniową $y = a_{2}x + b_{2}$, gdzie jako zmienną niezależną przyjęto $n$, a jako zależną położenie głośnika $x_{g}$. Powodem tego założenia, jest fakt, że zmienna $n$ oznacza kolejne liczby całkowite, które znamy dokładnie. \\
+
+Porównując dopasowaną z funkcję z równaniem (9) można zauważyć, że współczynnik kierunkowy $a_{2}$ odpowiada długości fali $\lambda_{1}$, a wyraz wolny $b_{2}$ jest równy położeniu początkowemu głośnika $x_{2}$. W ten sposób wyznaczono parametry:\\
+\[
+    \lambda_{1} = (8,719 \pm 0,038) \textrm{ mm},
+\]\[
+    x_{2} = (1,0021 \pm 0,0047) \textrm{ m}.
+\]\[
+    c_{\lambda_{1},\ x_{0}} =  -0,000020 \textrm{ m}^{2},
+\]\[
+    r_{\lambda_{1},\ x_{0}} =  -0,999.
+\]
+Dalej na podstawie równania (2) wyznaczono prędkość dźwięku w powietrzu, oraz niepewność tego parametru wykorzystując propagację małych niepewności, otrzymując:\\
+\begin{equation}
+    u_{v}^{2} = (u_{\lambda}\nu)^{2} + (u_{\nu}\lambda)^{2}.
+\end{equation}
+W ten sposób wyznaczono prędkość dźwięku równą:\\
+\[
+    v_{2} = (348,7 \pm 1,5) \textrm{ m/s}.
+\]
+W celu weryfikacji poprawności otrzymanych wyników wykonano test $\chi^{2}$ Pearsona dla przyjętego poziomu zgodności $\alpha = 0,05$ oraz $d = 12$ stopni swobody, które skutkowały wartością krytyczną równą $\chi^{2}_{kr} = 21,03$. Wartość tą porównano z otrzymanymi wynikami równymi:\\
+\[
+    \chi^{2} = 8,56,
+\]\[
+    \chi^{2}_{red} = 0,71,
+\]\[
+    p = 0,74.
+\]
+Wartości te również w tym przypadku wskazały na dobrą zgodność pomiarów z założonym modelem, jednak w celu dalszej weryfikacji stworzono wykres reszt danych w tej części równaniem:\\
+\begin{equation}
+    e_{i} = x_{i} - (x_{2} + n\lambda_{1}),
+\end{equation}
+który znajduje się na Rysunku 5.\\
+
+Również w tej części rozkład reszt nie jest chaotyczny, co znów oznacza wpływ pewnych nielosowych czynników zewnętrznych. Według oceny eksperymentatora wynika to jednak najprawdopodobniej z faktu, że długość fali dźwięku była tego samego rzędu wielkości do dokładność miarki znajdującej się na ławie. Z tego powodu dla wartości $\lambda_{1} = (8,719 \pm 0,032) \textrm{ mm}$ różnica między kolejnymi pomiarami wynosiła zwykle 9 mm, lecz z wraz z wykonywanymi pomiarami różnica między rzeczywistą wartością tego parametru, a wielkością odczytywaną na miarce się nawarstwiała, co skutkowało odnotowaniem 8 mm różnicy między niektórymi odczytami. Widać jednak, że niepewności zostały założone poprawnie, jako że reszty są tego samego rzędu wielkości, a wartość $\chi^{2}_{red} = 0,71$, nie jest na tyle mała by było to niezbędne. \\
+
+\subsection{\small METODA 3}
+
+Ostatnia metoda polegała na wykorzystaniu figur Lissajous, opisanych w Rozdziale 1. Na podstawie danych zawartych w Tabeli 3 stworzono wykres zależności położenia głośnika $x_{g}$ od współczynnika $k$ zdefiniowanego równaniem (5). Do tak stworzonego wykresu dopasowano zależność liniową $y = a_{3}x + b_{3}$. Jako zmienną niezależną przyjęto $k$, ponieważ uznano, że jest ono znane dokładnie, z powodu, że opisuje ono wielokrotność ćwiartki długości fali, a jako zmienną zależną przyjęto $x_{g}$. \\
+
+W przypadku tego dopasowania, tak samo jak w przypadku dopasowania do wykresu na Rysunku 4, współczynnik kierunkowy równy jest długości fali $a_{3} = \lambda_{2}$, a wyraz wolny opisuje położenie początkowe głośnika $b_{3} = x_{3}$. W związku z tym do obliczenia prędkości dźwięku w powietrzu wykorzystano te same zależności jak w przypadku metody 2, otrzymując:\\
+\[
+    \lambda_{2} = (8,656 \pm 0,027) \textrm{ mm},
+\]\[
+    x_{3} = (1,0460 \pm 0,0035) \textrm{ m},
+\]\[
+    v_{3} = (346,2 \pm 1,1) \textrm{ m/s},
+\]\[
+    c_{\lambda_{2}, x_{0}} =  -0,000011 \textrm{ m}^{2},
+\]\[
+    r_{\lambda_{2}, x_{0}} =  -0,99969.
+\]
+
+Do weryfikacji wyników ponownie wykorzystano test $\chi^{2}$ Pearsona, dla którego znów przyjęto poziom zgodności $\alpha = 0,05$. Na podstawie danych obliczono:\\
+\[
+    \chi^{2} = 11,98,
+\]\[
+    \chi^{2}_{red} = 0,29,
+\]\[
+    p = 0,999999.
+\]
+Wyniki te porównano z wartością krytyczną obliczoną dla $d = 42$ stopnie swobody równą $\chi^{2}_{kr} = 58,12$. Już na pierwszy rzut oka widać, że otrzymana wartość $\chi^{2} = 11,98$ jest znacząco mniejsza od wartości krytycznej, co skutkuje w wartości $p = 0,999999 \approx 1$, bardzo bliskiej jeden. Może to oznaczać bardzo dobrą zgodność wykonanych pomiarów z modelem teoretycznym, lecz tak duża wartość $p$ sugeruje, że wyniki nie były niezależne, lub przeszacowano niepewności. W związku z tym postanowiono stworzyć wykres reszt zawarty na Rysunku 7. W przypadku tej części pomiarów reszty zdefiniowane były jako:\\
+\begin{equation}
+    e_{i} = x_{i} - (x_{3} + k\lambda_{2}).
+\end{equation}
+
+Po raz kolejny widać nielosowy rozkład, który oznacza, że na pomiary miały wpływ nielosowe czynniki zewnętrzne. Według oceny eksperymentatora, tak samo jak w przypadku pomiarów dla metody 2, wpływ miała dokładność miarki wynosząca $\Delta_{x} = 1$ mm wykorzystywanej, która była niewystarczająca przy pomiarach przesunięcia o ćwierć długości fali. Różnice położenia między kolejnymi pomiarami wynosiły 2 mm, jednak co kilka punktów pomiarowych była ona równa 3mm, co wynikało z potrzeby skompensowania nawarstwiania się niewielkiej różnicy między dokładnością miarki, a długością fali. Skutkuje to okresowym rozkładem reszt widocznym na Rysunku 7. \\
+
+Z powodu bardzo niskiej wartości $\chi^{2}_{red} = 0,29$ oraz faktu, że większość reszt jest znacznie mniejsza niż niepewność położenia, postanowiono przeskalować niepewności w taki sam sposób jak dla metody 1, otrzymując czynnik skalujący $c_{2} = 0,54$. Wykorzystując przeskalowane niepewności wykonano ponowne dopasowanie otrzymując wartości parametrów równe: \\
+\[
+    \lambda_{2} = (8,656 \pm 0,015) \textrm{ mm},
+\]\[
+    x_{3} = (1,0460 \pm 0,0018) \textrm{ m},
+\]\[
+    v_{3} = (346,24 \pm 0,59) \textrm{ m/s}.
+\]
+Ponieważ rozkład widoczny na Rysunku 7 przypomina ten widoczny na Rysunku 5, uznano że odpowiedzialny jest za nie ten sam efekt, to znaczy zbyt mała dokładność miarki w stosunku do wykonywanych pomiarów. Stwierdzono jednak, że nie miał on na tyle dużego wpływu, aby odrzucić wyniki zebrane w tych seriach, zwłaszcza, że pozostałe testy nie wykazały znacznych powodów do zakwestionowania rzetelności wykonanych pomiarów.\\
+
+\subsection{\small PORÓWNANIE WYNIKÓW}
+
+W celu porównania prędkości dźwięku w powietrzu obliczonych różnymi metodami wykorzystano test $3\sigma$, którym porównano wartości tego parametru parami. Test ten nie wykazał rozbieżności między tymi parametrami. W związku z tym postanowiono ostateczną wartość tego parametru obliczyć jako średnią ważoną. Otrzymano w ten sposób ostateczną ocenę prędkości dźwięku w powietrzu przy temperaturze $t = (21 \pm 1)$ $^{\circ}$C:\\
+\[
+    \Bar{v} = (346,32 \pm 0,67) \textrm{ m/s}.
+\]
+
+Otrzymany wynik porównano z teoretyczną wartością prędkości dźwięku w powietrzu o temperaturze bezwzględnej $T = (294 \pm 1)$ K, wykorzystując równanie (3) oraz dane literaturowe[2]. Dla współczynnika $\kappa = 1,4$, stałej gazowej $R = 8,315$ J/molK oraz średniej masie molowej powietrza $\nu = 0,029$ kg/mol obliczono wartość prędkości równą: \\
+\[
+    v_{teo} = 343,53 \textrm{ m/s}.
+\]
+Test $3\sigma$ wykazał brak zgodności między tymi parametrami. Według eksperymentatora powodem może być uproszczony model wykorzystany do obliczenia wartości teoretycznej, jako że użyty model zakłada powietrze jako gaz doskonały. W rzeczywistości powietrze wykazuje pewne odstępstwa od gazu doskonałego, a prędkość rozchodzenia się fali dźwiękowej zależy również od innych parametrów jak na przykład wilgotność powietrza. \\
+
+Wyniki pomiarów wykazują jednak bardzo dużą zgodność z założonym modelem falowym, jak również zgodność między użytymi metodami. W związku z tym uznano że przeprowadzone pomiary pozwalają na rzetelne określenie prędkości dźwięku w warunkach przeprowadzenia pomiarów jako $\Bar{v} = (346,32 \pm 0,67)$ m/s.\\
+
+
+\section{\small PODSUMOWANIE}
+W ćwiczeniu wykonano pomiary prędkości dźwięku wykorzystując trzy różne metody, opisane w Rozdziale 3. Na podstawie zebranych danych wyznaczono trzy osobne oceny szukanego parametru otrzymując:\\
+\[
+    v_{1} = (345,1 \pm 1,2) \textrm{ m/s},
+\]\[
+    v_{2} = (348,7 \pm 1,5) \textrm{ m/s},
+\]\[
+    v_{3} = (346,2 \pm 1,1) \textrm{ m/s}.
+\]
+Wartości te porównano parami wykorzystując test $3\sigma$, który nie wykazał powodów do odrzucenia żadnej z ocen tego parametru. Z tego powodu ostateczną ocenę prędkości dźwięku  wyznaczono jako średnią ważoną otrzymując:\\
+\[
+    \Bar{v} = (346,32 \pm 0,67) \textrm{ m/s}.
+\]
+Wartość tą porównano testem $3\sigma$ z teoretyczną wartością prędkości dźwięku wynikającą z założenia powietrza jako gazu doskonałego. Porównanie wykazało brak zgodności, jednak zaproponowano prawdopodobne przyczyny tego wyniku. \\
+
+Do oceny poprawności wyznaczonych parametrów użyto testu $\chi^{2}$ Pearsona, który dla każdej z metod wykazał duża zgodność z założonym modelem. Wykonano również wykresy rozkładu reszt, które sugerowały wpływ nielosowych czynników zewnętrznych na wykonane pomiary. W przypadku metody drugiej i trzeciej, czynnikiem tym była najprawdopodobniej zbyt mała dokładność wykorzystywanego przyrządu pomiarowego. \\
+
+Ostatecznie uznano, że wykonane pomiary wykazują zgodność z założonym modelem, oraz pozwalają na wyznaczenie rzetelnej oceny prędkości dźwięku w powietrzu w warunkach wykonywania pomiarów.\\
+
+
+
+\end{multicols}
+\section{\small WYNIKI OBLICZEŃ}
+
+\centering{\small\textbf{Tabela 4: Niepewności położenia $u_{x}$ wynikające z pomiarów oraz $u_{x}(u_{t})$ wynikające z równania (7).}}\\
+\textcolor{white}{o}\\
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+    \hline
+    $u_{x}$ [mm] & 0,58 & 0,58 & 0,58 & 0,58 & 0,58 & 0,58 & 0,58 & 0,58 & 0,58 & 0,58 & 0,58 \\
+    \hline
+    $u_{x}(u_{t})$ [mm] & 0,20 & 0,20 & 0,20 & 0,40 & 0,40 & 0,40 & 0,40 & 0,40 & 0,40 & 0,40 & 0,40 \\
+    \hline
+\end{tabular}
+\textcolor{white}{o}\\
+\justifying
+
+\section{\small BIBLIOGRAFIA}
+$[1]$ George S. K. Wong and Tony F. W. Embleton, \textit{Variation of the speed of sound in air with humidity and temperature}, The Journal of the Acoustical Society of America 77, 1710 (1985)\\
+$[2]$ Strona pracowni fizycznej FUW, \textit{Instrukcja do ćwiczenia F1} \\
+\end{document}
